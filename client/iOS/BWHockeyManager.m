@@ -550,25 +550,25 @@ static NSString *kHockeyErrorDomain = @"HockeyErrorDomain";
 - (void)showCheckForUpdateAlert_ {
   if (!updateAlertShowing_) {
     if ([self hasNewerMandatoryVersion]) {
-      UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:BWHockeyLocalize(@"HockeyUpdateAvailable")
-                                                           message:[NSString stringWithFormat:BWHockeyLocalize(@"HockeyUpdateAlertMandatoryTextWithAppVersion"), [self.app nameAndVersionString]]
+      UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:BWHockeyLocalize(@"Update Available")
+                                                           message:[NSString stringWithFormat:BWHockeyLocalize(@"%@"), [self.app nameAndVersionString]]
                                                           delegate:self
-                                                 cancelButtonTitle:BWHockeyLocalize(@"HockeyInstallUpdate")
+                                                 cancelButtonTitle:BWHockeyLocalize(@"Install")
                                                  otherButtonTitles:nil
                                  ] autorelease];
       [alertView setTag:2];
       [alertView show];
       updateAlertShowing_ = YES;
     } else {
-      UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:BWHockeyLocalize(@"HockeyUpdateAvailable")
-                                                           message:[NSString stringWithFormat:BWHockeyLocalize(@"HockeyUpdateAlertTextWithAppVersion"), [self.app nameAndVersionString]]
+      UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:BWHockeyLocalize(@"Update Available"), [self.app nameAndVersionString]]
+                                                           message:[NSString stringWithFormat:BWHockeyLocalize(@"%@"), [self.app nameAndVersionString]]
                                                           delegate:self
-                                                 cancelButtonTitle:BWHockeyLocalize(@"HockeyIgnore")
-                                                 otherButtonTitles:BWHockeyLocalize(@"HockeyShowUpdate"), nil
+                                                 cancelButtonTitle:BWHockeyLocalize(@"Cancel")
+                                                 otherButtonTitles:BWHockeyLocalize(@"Show Update"), nil
                                  ] autorelease];
       BW_IF_IOS4_OR_GREATER(
                             if (self.ishowingDirectInstallOption && !isAppStoreEnvironment_) {
-                              [alertView addButtonWithTitle:BWHockeyLocalize(@"HockeyInstallUpdate")];
+                              [alertView addButtonWithTitle:BWHockeyLocalize(@"Install")];
                             }
                             )
       [alertView setTag:0];
@@ -584,7 +584,7 @@ static NSString *kHockeyErrorDomain = @"HockeyErrorDomain";
   UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:nil
                                                        message:message
                                                       delegate:self
-                                             cancelButtonTitle:@"Ok"
+                                             cancelButtonTitle:@"OK"
                                              otherButtonTitles:nil
                              ] autorelease];
   [alertView setTag:1];
